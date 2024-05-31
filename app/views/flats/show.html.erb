@@ -1,0 +1,43 @@
+<div>
+  <%= image_tag "flatimage.jpg", class: "flat-image-show" %>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+        <div class="flat-show-card p-3" style= "margin-top: -60px;">
+          <h1><%= @flat.name %></h1>
+          <p><%= @flat.address %></p>
+        </div>
+        <div class="flat-show-card">
+          <h2>A bit more about this flat...</h2>
+          <p>Some detailed text about the flat</p>
+          <div id="map"></div>
+          <script>
+	          mapboxgl.accessToken = 'pk.eyJ1IjoiYWxhbjEwOTAiLCJhIjoiY2p0a2I2Y3Z5MTF1cjN5bHFqYmF1d2FwdSJ9.uHjdqXgfpHv-abraKe1agw';
+            const map = new mapboxgl.Map({
+            container: 'map', // container ID
+            center: [coords.lng, coords.lat], // starting position [lng, lat]
+            zoom: 9 // starting zoom
+            });
+        </script>
+  </div>
+    </div>
+    <div class="col-4">
+      <div class="flat-show-card p-4" style= "margin-top: -60px">
+        <h4>Book this place</h4>
+        <%= simple_form_for @flat do |f| %>
+        <%= f.input :name, label: "From:", as: :date, html5: true, class: "form-control mb-2" %>
+        <%= f.input :name, label: "To:", as: :date, html5: true, class: "form-control mb-2" %>
+        <%= f.submit "Book", class: "btn btn-success", style: "width: 100%" %>
+        <% end %>
+      </div>
+      <div class="flat-show-card">
+        <h4>Details</h4>
+          <div class= "d-flex justify-content-between">
+            <p><%= @flat.number_of_guests %> People</p>
+            <p><%= @flat.price_per_night %>€</p>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

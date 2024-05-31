@@ -1,0 +1,27 @@
+<div>
+    <div class="container mt-5">
+      <div class="row">
+        <% @flats.each do |flat| %>
+          <div class="col-4 mb-3">
+            <div class="flat-card">
+              <%= image_tag "flatimage.jpg", class: "flat-image" %>
+              <div class="inner-flat-card p-3">
+                  <p class="flat-name"><%= flat.name %></p>
+                  <p class="flat-address"><%= flat.address %></p>
+                  <div class= "d-flex justify-content-between">
+                    <i class="fa-solid fa-people-line"><%= flat.number_of_guests %></i>
+                    <i class="fa-solid fa-euro-sign"><%= flat.price_per_night %></i>
+                  </div>
+              </div>
+              <div class= "d-flex justify-content-between p-3">
+                <%= link_to "More Info", flat_path(flat) %>
+                <%= link_to "Edit", edit_flat_path(flat) %>
+                <%= link_to "Remove", flat_path(flat), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?"} %>
+              </div>
+            </div>
+
+          </div>
+                      <% end %>
+      </div>
+    </div>
+</div>
